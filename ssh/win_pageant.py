@@ -75,7 +75,11 @@ def can_talk_to_agent():
         return True
     return False
 
-ULONG_PTR = ctypes.c_uint64 if platform.architecture()[0] == '64bit' else ctypes.c_uint32
+if platform.architecture()[0] == '64bit':
+    ULONG_PTR = ctypes.c_uint64
+else:
+    ULONG_PTR = ctypes.c_uint32
+
 class COPYDATASTRUCT(ctypes.Structure):
     """
     ctypes implementation of
